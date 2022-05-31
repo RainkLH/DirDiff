@@ -6,3 +6,5 @@
 /DirDiff/.vs/*
 /DirDiff/*/bin/*
 /DirDiff/*/obj/*
+/DirDiff/DirDiff/Properties/PublishProfiles
+/Pub
