@@ -21,8 +21,6 @@ namespace DirDiff
             _names1 = new Dictionary<string, bool>();
             _names2 = new Dictionary<string, bool>();
             InitializeComponent();
-            //this.listBox1.Items.AddRange(new List<string> { "1", "2" }.ToArray());
-            //this.listBox1.DataSource = new List<string> { "1", "2" };
             listBox1.MouseWheel += ListBox1_MouseWheel;
             listBox2.MouseWheel += ListBox2_MouseWheel;
 
@@ -70,12 +68,12 @@ namespace DirDiff
         private void ListBox1_MouseWheel(object sender, MouseEventArgs e)
         {
             int top1 = listBox1.TopIndex;
-            listBox2.TopIndex = top1;// > listBox2.Items.Count
+            listBox2.TopIndex = top1;
         }
         private void ListBox2_MouseWheel(object sender, MouseEventArgs e)
         {
             int top2 = listBox2.TopIndex;
-            listBox1.TopIndex = top2;// > listBox2.Items.Count
+            listBox1.TopIndex = top2;
         }
 
         private void listBox1_KeyDown(object sender, KeyEventArgs e)
@@ -234,13 +232,17 @@ namespace DirDiff
 
         private List<string> GetCopiedPaths()
         {
+            List<string> names = new List<string>();
             List<string> copys = new List<string>();
             var paths = Clipboard.GetFileDropList();
             foreach (string path in paths)
             {
                 copys.Add(path);
             }
-            var names = copys.Select(x => Path.GetFileName(x)).ToList();
+            if (copys.Count == 1 && Directory.Exists(copys[0]))
+                copys = Directory.GetFileSystemEntries(copys[0]).ToList();
+            if(copys.Any())
+                names = copys.Select(x => Path.GetFileName(x)).ToList();
             return names;
         }
     }
