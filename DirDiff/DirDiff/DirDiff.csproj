@@ -2,8 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Raink</Authors>
+    <Company>WithRain</Company>
+    <Product>RKTool</Product>
+    <PackageIcon>folders.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\withr\Downloads\folders.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
