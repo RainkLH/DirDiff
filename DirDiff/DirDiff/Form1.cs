@@ -81,11 +81,16 @@ namespace DirDiff
             if(e.KeyData == (Keys.V|Keys.Control))
             {
                 var names = GetCopiedPaths();
-                SetList1(names);
+                if (names.Any())
+                {
+                    this.path1.Text = Path.GetDirectoryName(names[0]);
+                    SetList1(names);
+                } 
             }
             if (e.KeyData == Keys.Delete)
             {
                 SetList1(new List<string>());
+                this.path1.Text = "Dir1";
             }
         }
 
@@ -94,11 +99,16 @@ namespace DirDiff
             if (e.KeyData == (Keys.V | Keys.Control))
             {
                 var names = GetCopiedPaths();
-                SetList2(names);
+                if (names.Any())
+                {
+                    this.path2.Text = Path.GetDirectoryName(names[0]);
+                    SetList2(names);
+                }                
             }
             if (e.KeyData == Keys.Delete)
             {
                 SetList2(new List<string>());
+                this.path2.Text = "Dir2";
             }
         }
 
@@ -211,11 +221,13 @@ namespace DirDiff
             {
                 if (dirs.Count <= 2)
                 {
+                    this.path1.Text = dirs[0];
                     var files1 = Directory.GetFileSystemEntries(dirs[0]);
                     var names1 = files1.Select(x => Path.GetFileName(x)).ToList();
                     SetList1(names1);
                     if (dirs.Count == 2)
                     {
+                        this.path2.Text = dirs[1];
                         var files2 = Directory.GetFileSystemEntries(dirs[1]);
                         var names2 = files2.Select(x => Path.GetFileName(x)).ToList();
                         SetList2(names2);
@@ -223,6 +235,7 @@ namespace DirDiff
                 }
                 else if (dirs.Count > 2)
                 {
+                    this.path1.Text = Path.GetDirectoryName(dirs[0]);
                     var names1 = copys.Select(x => Path.GetFileName(x)).ToList();
                     SetList1(names1);
                 }

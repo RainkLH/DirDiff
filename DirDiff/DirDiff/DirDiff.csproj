@@ -2,19 +2,21 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>Raink</Authors>
     <Company>WithRain</Company>
     <Product>RKTool</Product>
     <PackageIcon>folders.png</PackageIcon>
+    <ApplicationIcon>folders.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\withr\Downloads\folders.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Remove="folders.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="folders.ico" />
   </ItemGroup>
 
 </Project>
